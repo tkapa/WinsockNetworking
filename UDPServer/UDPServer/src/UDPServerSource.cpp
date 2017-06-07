@@ -42,7 +42,7 @@ void ReadInType() {
 			cout << "Server Received a Client Announcement" << endl;
 
 			//Send an acknowledgement back
-			PacketAcknowledgement pan;
+			PacketRequest pan;
 			pan.type = Packet::e_ServerAcknowledgement;
 			int result;
 			result = sendto(
@@ -57,8 +57,14 @@ void ReadInType() {
 		}
 
 		case 3: {
-			PacketAcknowledgement *pac = (PacketAcknowledgement *)p;
+			PacketRequest *pac = (PacketRequest *)p;
 			break;
+		}
+
+		case 4: {
+			PacketInformation *pi = (PacketInformation *)p;
+			cout << "Received user and password from client" << endl;
+			cout << pi->username << "\n" << pi->password;
 		}
 	}
 }

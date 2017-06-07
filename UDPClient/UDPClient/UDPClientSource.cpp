@@ -43,8 +43,25 @@ void ReadInType() {
 		}
 
 		case 3: {
-			PacketAcknowledgement *pac = (PacketAcknowledgement *)p;
-			cout << "Received Acknowledgement from the server" << endl;
+			PacketRequest *pac = (PacketRequest *)p;
+			cout << "Received Information Request from the server" << endl;
+			PacketInformation pi;
+			pi.type = Packet::e_ClientInformation;
+			cout << "Please input your Username\n> ";
+			cin >> pi.username;
+			cout << "\n Please input your password\n> ";
+			cin >> pi.password;
+
+			int result;
+			result = sendto(
+				sendSocket,
+				(const char *)&pi,
+				sizeof(pi),
+				0,
+				(SOCKADDR*)&sendAddress,
+				sizeof(sendAddress));
+			cout << result << endl;
+			
 			break;
 		}
 	}

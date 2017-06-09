@@ -48,9 +48,9 @@ void ReadInType() {
 			PacketInformation pi;
 			pi.type = Packet::e_ClientInformation;
 			cout << "Please input your Username\n> ";
-			cin >> pi.username;
+			cin.getline(pi.username, sizeof(pi.username));
 			cout << "\n Please input your password\n> ";
-			cin >> pi.password;
+			cin.getline(pi.password, sizeof(pi.password));
 
 			int result;
 			result = sendto(

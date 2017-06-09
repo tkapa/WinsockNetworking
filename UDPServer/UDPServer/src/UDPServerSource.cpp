@@ -64,7 +64,7 @@ void ReadInType() {
 		case 4: {
 			PacketInformation *pi = (PacketInformation *)p;
 			cout << "Received user and password from client" << endl;
-			cout << pi->username << "\n" << pi->password;
+			cout << pi->username << "\n" << pi->password << endl;;
 		}
 	}
 }
@@ -77,8 +77,8 @@ void Selection() {
 		checkSockets.fd_array[0] = receiveSocket;
 
 		struct timeval t;
-		t.tv_sec = 10;
-		t.tv_usec = 10;
+		t.tv_sec = 100;
+		t.tv_usec = 100;
 
 		waiting = select(NULL, &checkSockets, NULL, NULL, &t);
 
